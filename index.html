@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>农食行业全链路知识管理咨询流程图</title>
+<style>
+  :root { --bg:#0b1220; --card:#121a2b; --ink:#ecf2ff; --muted:#b8c3e1; --accent:#7aa2ff; --accent-2:#5ce0b9; --warn:#ffd166; --ok:#84f3a3; --shadow:0 10px 24px rgba(0,0,0,.35); --radius:18px; }
+  *{box-sizing:border-box}
+  body{margin:0;padding:32px;color:var(--ink);background:radial-gradient(1200px 800px at 20% -10%, #1b2650, transparent),var(--bg);font:15px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"PingFang SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif}
+  .wrap{max-width:1200px;margin:0 auto}
+  header{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+  .logo{width:42px;height:42px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent-2));border-radius:12px;box-shadow:var(--shadow)}
+  h1{font-size:22px;margin:0;letter-spacing:.5px}
+  .subtitle{color:var(--muted);font-size:13px}
+  .toolbar{display:flex;gap:16px;align-items:center;margin:8px 0 24px}
+  .tag{padding:6px 10px;border-radius:999px;background:#172038;color:var(--muted);border:1px solid #26325a;font-size:12px}
+  .toggle{display:flex;align-items:center;gap:10px;padding:6px 10px;border-radius:999px;background:#111827;border:1px solid #26325a;cursor:pointer;user-select:none}
+  .toggle input{accent-color:var(--accent);width:16px;height:16px}
+  .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:22px;position:relative}
+  .stage{background:linear-gradient(180deg,#101a31,#0c1528);border:1px solid #26325a;border-radius:var(--radius);padding:16px 16px 14px;box-shadow:var(--shadow);position:relative}
+  .stage h3{margin:0 0 8px;font-size:16px}
+  .stage .meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+  .chip{font-size:11px;color:#d7e0ff;padding:4px 8px;border-radius:999px;background:#1a274b;border:1px solid #2b3d72}
+  .bullet{margin:8px 0 0 0;padding-left:16px;color:#c9d5ff}
+  .bullet li{margin:4px 0}
+  .deliver{margin-top:10px;font-size:12px;color:var(--ok)}
+  .arrow{position:absolute;top:50%;transform:translateY(-50%);width:22px;height:22px;display:grid;place-items:center;right:-13px}
+  .stage svg{filter:drop-shadow(0 2px 4px rgba(0,0,0,.4))}
+  .lanes{display:grid;grid-template-columns:repeat(5,1fr);gap:22px;margin-top:14px}
+  .lane{background:rgba(122,162,255,.08);border:1px dashed #2b3d72;border-radius:14px;padding:10px 12px}
+  .lane b{display:block;font-size:12px;color:#bcd3ff;margin-bottom:6px}
+  .lane ul{margin:0;padding-left:16px;color:#a9b8e8;font-size:12px}
+  .legend{margin-top:18px;display:flex;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:12px}
+  .legend .dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle}
+  .dot-plan{background:var(--accent)}
+  .dot-build{background:var(--accent-2)}
+  .dot-eval{background:var(--warn)}
+  .note{margin-top:18px;color:var(--muted);font-size:12px}
+  @media (max-width:980px){.flow,.lanes{grid-template-columns:1fr}.arrow{display:none}}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.5 6H8.5L12 2Z" fill="#0b1220"/><rect x="5" y="9" width="14" height="8" rx="3" fill="#0b1220"/></svg>
+      </div>
+      <div>
+        <h1>农食行业全链路知识管理咨询流程图（更新版）</h1>
+        <div class="subtitle">覆盖 <b>种植</b>/<b>养殖</b> — <b>加工</b>/<b>生产</b> — <b>流通</b>/<b>销售</b> 的知识化与AI落地路径 · 新增：行业/企业/部门三级知识库与应用示例</div>
+      </div>
+    </header>
+
+    <div class="toolbar">
+      <span class="tag">一页式可视流程 · 可复制到方案/网站</span>
+      <label class="toggle" title="切换简洁/详细视图">
+        <input id="cmp" type="checkbox" />
+        <span>简洁视图</span>
+      </label>
+    </div>
+
+    <!-- FLOW STAGES -->
+    <section class="flow" aria-label="咨询实施阶段流程">
+      <!-- 1 现状诊断 -->
+      <div class="stage">
+        <h3>① 现状诊断</h3>
+        <div class="meta"><span class="chip">2–4 周</span><span class="chip">访谈/盘点</span><span class="chip">问题清单</span></div>
+        <ul class="bullet">
+          <li>组织/流程/数据/工具四维体检</li>
+          <li>识别跨环节断点：种植/养殖、加工、销售</li>
+          <li>评估知识成熟度与合规/追溯现状</li>
+        </ul>
+        <details><summary><span class="chip">交付物</span></summary>
+          <ul class="bullet"><li>《现状诊断与差距评估报告》</li><li>痛点矩阵 & 优先级队列（Impact × Feasibility）</li></ul>
+        </details>
+        <div class="deliver">出线标准：关键痛点达成一致，定义目标场景与KPI。</div>
+        <div class="arrow" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24"><path d="M4 12h12" stroke="url(#g1)" stroke-width="2" stroke-linecap="round"/><path d="M14 8l4 4-4 4" fill="none" stroke="url(#g1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="g1" x1="0" x2="24" y1="0" y2="0"><stop stop-color="#7aa2ff"/><stop offset="1" stop-color="#5ce0b9"/></linearGradient></defs></svg>
+        </div>
+      </div>
+
+      <!-- 2 方案设计 -->
+      <div class="stage">
+        <h3>② 方案设计</h3>
+        <div class="meta"><span class="chip">2–4 周</span><span class="chip">蓝图/路线图</span><span class="chip">SOP/标准</span></div>
+        <ul class="bullet">
+          <li>全链路知识流程：生产→加工→流通→销售</li>
+          <li>知识库架构：分类、标签、元数据、保密分级</li>
+          <li>AI场景清单：检索问答、预测、异常检测、追溯</li>
+        </ul>
+        <details><summary><span class="chip">交付物</span></summary>
+          <ul class="bullet"><li>《知识管理蓝图与实施路线图》</li><li>知识地图 & 术语库 & 标签规范</li></ul>
+        </details>
+        <div class="deliver">出线标准：目标架构冻结，试点范围与里程碑确认。</div>
+        <div class="arrow" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24"><path d="M4 12h12" stroke="url(#g2)" stroke-width="2" stroke-linecap="round"/><path d="M14 8l4 4-4 4" fill="none" stroke="url(#g2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="g2" x1="0" x2="24" y1="0" y2="0"><stop stop-color="#7aa2ff"/><stop offset="1" stop-color="#5ce0b9"/></linearGradient></defs></svg>
+        </div>
+      </div>
+
+      <!-- 3 先导落地 -->
+      <div class="stage">
+        <h3>③ 先导落地（试点）</h3>
+        <div class="meta"><span class="chip">6–8 周</span><span class="chip">知识库搭建</span><span class="chip">AI POC</span></div>
+        <ul class="bullet">
+          <li>知识采集：SOP/日志/质检报告/设备数据</li>
+          <li>建设<b>三级知识库</b>：行业 / 企业 / 部门；完善标签与元数据治理，配置权限与保密分级</li>
+          <li>AI知识助手POC：检索问答 / 农技与质控辅导 / 生产参数推荐 / 异常检测</li>
+        </ul>
+        <details><summary><span class="chip">交付物</span></summary>
+          <ul class="bullet"><li>可用的知识库与知识图谱雏形（行业/企业/部门）</li><li>试点场景效果报告（效率/质量/合规）</li></ul>
+        </details>
+        <div class="deliver">出线标准：试点KPI达标，形成规模化推广清单。</div>
+        <div class="arrow" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24"><path d="M4 12h12" stroke="url(#g3)" stroke-width="2" stroke-linecap="round"/><path d="M14 8l4 4-4 4" fill="none" stroke="url(#g3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="g3" x1="0" x2="24" y1="0" y2="0"><stop stop-color="#7aa2ff"/><stop offset="1" stop-color="#5ce0b9"/></linearGradient></defs></svg>
+        </div>
+      </div>
+
+      <!-- 4 推广与变更管理 -->
+      <div class="stage">
+        <h3>④ 推广与变更管理</h3>
+        <div class="meta"><span class="chip">4–6 周</span><span class="chip">组织与治理</span><span class="chip">培训/激励</span><span class="chip">Workshop</span></div>
+        <ul class="bullet">
+          <li>知识运营机制：角色、流程、考核、激励</li>
+          <li>跨部门复制：种植/养殖 → 加工/生产 → 销售</li>
+          <li>变更管理：培训、传播</li>
+          <li>Workshop密集式培训：管理层战略研讨 + 业务团队实操上手</li>
+        </ul>
+        <details><summary><span class="chip">交付物</span></summary>
+          <ul class="bullet"><li>《知识运营手册》与岗位说明</li><li>推广计划与绩效度量方案</li></ul>
+        </details>
+        <div class="deliver">出线标准：多场景稳定运行，形成自驱动运营。</div>
+        <div class="arrow" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24"><path d="M4 12h12" stroke="url(#g4)" stroke-width="2" stroke-linecap="round"/><path d="M14 8l4 4-4 4" fill="none" stroke="url(#g4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="g4" x1="0" x2="24" y1="0" y2="0"><stop stop-color="#7aa2ff"/><stop offset="1" stop-color="#5ce0b9"/></linearGradient></defs></svg>
+        </div>
+      </div>
+
+      <!-- 5 评估与优化 -->
+      <div class="stage">
+        <h3>⑤ 评估与持续优化</h3>
+        <div class="meta"><span class="chip">持续</span><span class="chip">KPI/OKR</span><span class="chip">模型迭代</span></div>
+        <ul class="bullet">
+          <li>价值评估：检索时长↓、重复工时↓、合规风险↓</li>
+          <li>AI迭代：新知识持续注入，模型校准与评测</li>
+          <li>扩展：更多产品线/基地/市场实现规模化</li>
+        </ul>
+        <details><summary><span class="chip">交付物</span></summary>
+          <ul class="bullet"><li>《季度评估与优化报告》</li><li>年度路线图更新与投资建议</li></ul>
+        </details>
+        <div class="deliver">出线标准：形成“知识—业务—AI”闭环的持续复利。</div>
+      </div>
+    </section>
+
+    <!-- Swimlanes / stakeholders -->
+    <section class="lanes" aria-label="典型参与方与关注点">
+      <div class="lane"><b>种植/养殖</b>
+        <ul><li>农事/饲养日志标准化</li><li>病虫害/疾病知识卡片</li><li>投入品与成本台账</li></ul>
+      </div>
+      <div class="lane"><b>加工/生产</b>
+        <ul><li>工艺SOP与关键参数</li><li>质检与异常处置知识</li><li>设备与能耗数据对接</li></ul>
+      </div>
+      <div class="lane"><b>流通/销售</b>
+        <ul><li>订单/库存知识联动</li><li>行情与价格分析知识</li><li>客户与渠道最佳实践</li></ul>
+      </div>
+      <div class="lane"><b>质量/合规</b>
+        <ul><li>追溯批次与记录模板</li><li>审核与留痕标准</li><li>食品安全法规映射</li></ul>
+      </div>
+      <div class="lane"><b>IT/数据</b>
+        <ul><li>标签/元数据与权限</li><li>数据集成与接口治理</li><li>AI知识助手与监控</li></ul>
+      </div>
+    </section>
+
+    <!-- KB Layers & Examples -->
+    <section class="lanes" aria-label="知识库层级与应用示例">
+      <div class="lane"><b>行业知识库</b>
+        <ul>
+          <li>病虫害/动物疫病防控方案库（可被不同企业复用与本地化）</li>
+          <li>食品安全法规与合规指引（含多区域/出口要求）</li>
+          <li>行业术语表与标准编码，支持供应链协同</li>
+        </ul>
+      </div>
+      <div class="lane"><b>企业知识库</b>
+        <ul>
+          <li>统一的工艺/质控标准与供应商评估体系</li>
+          <li>历史项目案例与复盘库，支持快速复制与避免再犯</li>
+          <li>企业级标签/元数据规范与安全分级</li>
+        </ul>
+      </div>
+      <div class="lane"><b>部门知识库</b>
+        <ul>
+          <li>生产：设备维护/能耗优化知识卡片、关键参数窗口</li>
+          <li>市场：渠道拓展最佳实践、促销方案模板与复盘</li>
+          <li>质检：批次检验流程、异常处置SOP与案例库</li>
+        </ul>
+      </div>
+      <div class="lane"><b>AI应用示例（与知识库联动）</b>
+        <ul>
+          <li>种植/养殖：基于知识卡片与历史数据进行病虫害/疫病预警与措施推荐</li>
+          <li>加工/生产：结合工艺与质检知识，优化参数并降低能耗与不良率</li>
+          <li>流通/销售：联动行情知识与库存，进行销量预测与定价建议</li>
+          <li>质量追溯：利用批次知识链路，实现异常快速定位与整改建议</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="legend"><span><span class="dot dot-plan"></span>规划/设计</span><span><span class="dot dot-build"></span>落地/推广</span><span><span class="dot dot-eval"></span>评估/优化</span></div>
+    <div class="note">提示：勾选“简洁视图”以隐藏详细条目；本图可直接复制到PPT或作为网页组件嵌入方案中。</div>
+  </div>
+<script>
+  const cmp = document.querySelector('#cmp');
+  cmp.addEventListener('change', (e)=>{ document.body.classList.toggle('compact', e.target.checked); });
+</script>
+</body>
+</html>
