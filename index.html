@@ -1,9 +1,13 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+<script language="Javascript">
+document.oncontextmenu=new Function ("event. returnValue=false") ;document.onselectstart=new Function ("event-returnValue=false");
+</script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>农食行业全链路知识管理咨询流程图</title>
+<title>农食行业全链路知识管理咨询流程图（更新版）</title>
 <style>
   :root { --bg:#0b1220; --card:#121a2b; --ink:#ecf2ff; --muted:#b8c3e1; --accent:#7aa2ff; --accent-2:#5ce0b9; --warn:#ffd166; --ok:#84f3a3; --shadow:0 10px 24px rgba(0,0,0,.35); --radius:18px; }
   *{box-sizing:border-box}
@@ -37,7 +41,18 @@
   .dot-build{background:var(--accent-2)}
   .dot-eval{background:var(--warn)}
   .note{margin-top:18px;color:var(--muted);font-size:12px}
-  @media (max-width:980px){.flow,.lanes{grid-template-columns:1fr}.arrow{display:none}}
+
+  /* 简洁视图：隐藏细节，仅保留结构 */
+  body.compact .bullet{display:none}
+  body.compact details{display:none}
+  body.compact .deliver{display:none}
+  body.compact .lanes .lane ul{display:none}
+  body.compact .legend::after{content:" · 简洁视图"; margin-left:6px; color:#b8c3e1}
+
+  @media (max-width:980px){
+    .flow,.lanes{grid-template-columns:1fr}
+    .arrow{display:none}
+  }
 </style>
 </head>
 <body>
@@ -116,9 +131,9 @@
         </div>
       </div>
 
-      <!-- 4 推广与变更管理 -->
+      <!-- 4 推广与变革管理 -->
       <div class="stage">
-        <h3>④ 推广与变更管理</h3>
+        <h3>④ 推广与变革管理</h3>
         <div class="meta"><span class="chip">4–6 周</span><span class="chip">组织与治理</span><span class="chip">培训/激励</span><span class="chip">Workshop</span></div>
         <ul class="bullet">
           <li>知识运营机制：角色、流程、考核、激励</li>
@@ -147,7 +162,7 @@
         <details><summary><span class="chip">交付物</span></summary>
           <ul class="bullet"><li>《季度评估与优化报告》</li><li>年度路线图更新与投资建议</li></ul>
         </details>
-        <div class="deliver">出线标准：形成“知识—业务—AI”闭环的持续复利。</div>
+        <div class="deliver">目标：形成“知识—业务—AI”闭环的持续复利。</div>
       </div>
     </section>
 
@@ -206,10 +221,28 @@
     <div class="legend"><span><span class="dot dot-plan"></span>规划/设计</span><span><span class="dot dot-build"></span>落地/推广</span><span><span class="dot dot-eval"></span>评估/优化</span></div>
     <div class="note">提示：勾选“简洁视图”以隐藏详细条目；本图可直接复制到PPT或作为网页组件嵌入方案中。</div>
   </div>
+
 <script>
-  const cmp = document.querySelector('#cmp');
-  cmp.addEventListener('change', (e)=>{ document.body.classList.toggle('compact', e.target.checked); });
+  // （可选）禁用右键 & 文本选择（更稳的写法）
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  document.addEventListener('selectstart', e => e.preventDefault());
+
+  // 简洁视图开关 + 记忆
+  document.addEventListener('DOMContentLoaded', () => {
+    const cmp = document.getElementById('cmp');
+    const saved = (typeof localStorage !== 'undefined') && localStorage.getItem('agri_compact') === '1';
+    if (saved) {
+      document.body.classList.add('compact');
+      if (cmp) cmp.checked = true;
+    }
+    if (cmp) {
+      cmp.addEventListener('change', (e) => {
+        const on = e.target.checked;
+        document.body.classList.toggle('compact', on);
+        try { localStorage.setItem('agri_compact', on ? '1' : '0'); } catch(err) {}
+      });
+    }
+  });
 </script>
 </body>
 </html>
-
