@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>农食行业全链路知识管理咨询流程图（更新版）</title>
+<title>农食行业全链路知识管理咨询流程图</title>
 <style>
   :root { --bg:#0b1220; --card:#121a2b; --ink:#ecf2ff; --muted:#b8c3e1; --accent:#7aa2ff; --accent-2:#5ce0b9; --warn:#ffd166; --ok:#84f3a3; --shadow:0 10px 24px rgba(0,0,0,.35); --radius:18px; }
   *{box-sizing:border-box}
@@ -14,13 +13,16 @@
   .logo{width:42px;height:42px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent-2));border-radius:12px;box-shadow:var(--shadow)}
   h1{font-size:22px;margin:0;letter-spacing:.5px}
   .subtitle{color:var(--muted);font-size:13px}
-  .toolbar{display:flex;gap:16px;align-items:center;margin:8px 0 24px}
+  .toolbar{display:flex;gap:12px;align-items:center;margin:8px 0 24px;flex-wrap:wrap}
   .tag{padding:6px 10px;border-radius:999px;background:#172038;color:var(--muted);border:1px solid #26325a;font-size:12px}
-  .toggle{display:flex;align-items:center;gap:10px;padding:6px 10px;border-radius:999px;background:#111827;border:1px solid #26325a;cursor:pointer;user-select:none}
+  .toggle{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:#111827;border:1px solid #26325a;cursor:pointer;user-select:none}
   .toggle input{accent-color:var(--accent);width:16px;height:16px}
+  .btn{padding:8px 12px;border-radius:10px;border:1px solid #2b3d72;background:#1a274b;color:#e6edff;cursor:pointer}
+  .btn:hover{filter:brightness(1.08)}
+
   .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:22px;position:relative}
   .stage{background:linear-gradient(180deg,#101a31,#0c1528);border:1px solid #26325a;border-radius:var(--radius);padding:16px 16px 14px;box-shadow:var(--shadow);position:relative}
-  .stage h3{margin:0 0 8px;font-size:16px}
+  .stage h3{margin:0 0 8px;font-size:16px;display:flex;align-items:center;gap:10px}
   .stage .meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
   .chip{font-size:11px;color:#d7e0ff;padding:4px 8px;border-radius:999px;background:#1a274b;border:1px solid #2b3d72}
   .bullet{margin:8px 0 0 0;padding-left:16px;color:#c9d5ff}
@@ -28,18 +30,27 @@
   .deliver{margin-top:10px;font-size:12px;color:var(--ok)}
   .arrow{position:absolute;top:50%;transform:translateY(-50%);width:22px;height:22px;display:grid;place-items:center;right:-13px}
   .stage svg{filter:drop-shadow(0 2px 4px rgba(0,0,0,.4))}
+
+  /* 阶段标记（与图例一致） */
+  .mark{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);padding:2px 8px;border-radius:999px;background:#0f1730;border:1px solid #2b3d72}
+  .mark .dot{display:inline-block;width:10px;height:10px;border-radius:50%}
+  .mark-plan .dot{background:var(--accent)}
+  .mark-build .dot{background:var(--accent-2)}
+  .mark-eval .dot{background:var(--warn)}
+
   .lanes{display:grid;grid-template-columns:repeat(5,1fr);gap:22px;margin-top:14px}
   .lane{background:rgba(122,162,255,.08);border:1px dashed #2b3d72;border-radius:14px;padding:10px 12px}
   .lane b{display:block;font-size:12px;color:#bcd3ff;margin-bottom:6px}
   .lane ul{margin:0;padding-left:16px;color:#a9b8e8;font-size:12px}
-  .legend{margin-top:18px;display:flex;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:12px}
-  .legend .dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle}
+
+  .legend{margin-top:18px;display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:12px;align-items:center}
+  .legend .dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:middle;box-shadow:0 0 0 2px rgba(0,0,0,.15) inset}
   .dot-plan{background:var(--accent)}
   .dot-build{background:var(--accent-2)}
   .dot-eval{background:var(--warn)}
   .note{margin-top:18px;color:var(--muted);font-size:12px}
 
-  /* 简洁视图：隐藏细节，仅保留结构 */
+  /* 简洁视图 */
   body.compact .bullet{display:none}
   body.compact details{display:none}
   body.compact .deliver{display:none}
@@ -50,16 +61,28 @@
     .flow,.lanes{grid-template-columns:1fr}
     .arrow{display:none}
   }
+
+  /* 打印到 PDF 优化 */
+  @media print{
+    body{background:#fff;color:#000;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .logo,.tag,.toggle,.btn{display:none}
+    .stage{background:#fff;border-color:#ccc;box-shadow:none}
+    .lane{background:#fff;border-color:#ccc}
+    a{color:#000}
+  }
 </style>
 </head>
 <body>
   <div class="wrap">
     <header>
       <div class="logo" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.5 6H8.5L12 2Z" fill="#0b1220"/><rect x="5" y="9" width="14" height="8" rx="3" fill="#0b1220"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2l3.5 6H8.5L12 2Z" fill="#0b1220"/>
+          <rect x="5" y="9" width="14" height="8" rx="3" fill="#0b1220"/>
+        </svg>
       </div>
       <div>
-        <h1>农食行业全链路知识管理咨询流程图（更新版）</h1>
+        <h1>农食行业全链路知识管理咨询流程图</h1>
         <div class="subtitle">覆盖 <b>种植</b>/<b>养殖</b> — <b>加工</b>/<b>生产</b> — <b>流通</b>/<b>销售</b> 的知识化与AI落地路径 · 新增：行业/企业/部门三级知识库与应用示例</div>
       </div>
     </header>
@@ -70,14 +93,15 @@
         <input id="cmp" type="checkbox" />
         <span>简洁视图</span>
       </label>
+      <button id="pdfBtn" class="btn" title="导出为 PDF">导出 PDF</button>
     </div>
 
     <!-- FLOW STAGES -->
     <section class="flow" aria-label="咨询实施阶段流程">
-      <!-- 1 现状诊断 -->
+      <!-- 1 现状诊断（规划/设计） -->
       <div class="stage">
-        <h3>① 现状诊断</h3>
-        <div class="meta"><span class="chip">2–4 周</span><span class="chip">访谈/盘点</span><span class="chip">问题清单</span></div>
+        <h3>① 现状诊断 <span class="mark mark-plan"><span class="dot"></span>规划/设计</span></h3>
+        <div class="meta"><span class="chip">2–4 周</span><span class="chip">分层访谈</span><span class="chip">盘点与清单</span></div>
         <ul class="bullet">
           <li>组织/流程/数据/工具四维体检</li>
           <li>识别跨环节断点：种植/养殖、加工、销售</li>
@@ -88,13 +112,17 @@
         </details>
         <div class="deliver">目标：关键痛点达成一致，定义目标场景与KPI。</div>
         <div class="arrow" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24"><path d="M4 12h12" stroke="url(#g1)" stroke-width="2" stroke-linecap="round"/><path d="M14 8l4 4-4 4" fill="none" stroke="url(#g1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="g1" x1="0" x2="24" y1="0" y2="0"><stop stop-color="#7aa2ff"/><stop offset="1" stop-color="#5ce0b9"/></linearGradient></defs></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24">
+            <path d="M4 12h12" stroke="url(#g1)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M14 8l4 4-4 4" fill="none" stroke="url(#g1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs><linearGradient id="g1" x1="0" x2="24" y1="0" y2="0"><stop stop-color="#7aa2ff"/><stop offset="1" stop-color="#5ce0b9"/></linearGradient></defs>
+          </svg>
         </div>
       </div>
 
-      <!-- 2 方案设计 -->
+      <!-- 2 方案设计（规划/设计） -->
       <div class="stage">
-        <h3>② 方案设计</h3>
+        <h3>② 方案设计 <span class="mark mark-plan"><span class="dot"></span>规划/设计</span></h3>
         <div class="meta"><span class="chip">2–4 周</span><span class="chip">蓝图/路线图</span><span class="chip">SOP/标准</span></div>
         <ul class="bullet">
           <li>全链路知识流程：生产→加工→流通→销售</li>
@@ -106,13 +134,17 @@
         </details>
         <div class="deliver">目标：试点范围与里程碑确认。</div>
         <div class="arrow" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24"><path d="M4 12h12" stroke="url(#g2)" stroke-width="2" stroke-linecap="round"/><path d="M14 8l4 4-4 4" fill="none" stroke="url(#g2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="g2" x1="0" x2="24" y1="0" y2="0"><stop stop-color="#7aa2ff"/><stop offset="1" stop-color="#5ce0b9"/></linearGradient></defs></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24">
+            <path d="M4 12h12" stroke="url(#g2)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M14 8l4 4-4 4" fill="none" stroke="url(#g2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs><linearGradient id="g2" x1="0" x2="24" y1="0" y2="0"><stop stop-color="#7aa2ff"/><stop offset="1" stop-color="#5ce0b9"/></linearGradient></defs>
+          </svg>
         </div>
       </div>
 
-      <!-- 3 先导落地 -->
+      <!-- 3 先导落地（落地/推广） -->
       <div class="stage">
-        <h3>③ 先导落地（试点）</h3>
+        <h3>③ 先导落地（试点） <span class="mark mark-build"><span class="dot"></span>落地/推广</span></h3>
         <div class="meta"><span class="chip">6–8 周</span><span class="chip">知识库搭建</span><span class="chip">AI POC</span></div>
         <ul class="bullet">
           <li>知识采集：SOP/日志/质检报告/设备数据</li>
@@ -124,13 +156,17 @@
         </details>
         <div class="deliver">目标：试点项目达标，形成规模化推广清单。</div>
         <div class="arrow" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24"><path d="M4 12h12" stroke="url(#g3)" stroke-width="2" stroke-linecap="round"/><path d="M14 8l4 4-4 4" fill="none" stroke="url(#g3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="g3" x1="0" x2="24" y1="0" y2="0"><stop stop-color="#7aa2ff"/><stop offset="1" stop-color="#5ce0b9"/></linearGradient></defs></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24">
+            <path d="M4 12h12" stroke="url(#g3)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M14 8l4 4-4 4" fill="none" stroke="url(#g3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs><linearGradient id="g3" x1="0" x2="24" y1="0" y2="0"><stop stop-color="#7aa2ff"/><stop offset="1" stop-color="#5ce0b9"/></linearGradient></defs>
+          </svg>
         </div>
       </div>
 
-      <!-- 4 推广与变革管理 -->
+      <!-- 4 推广与变更管理（落地/推广） -->
       <div class="stage">
-        <h3>④ 推广与变革管理</h3>
+        <h3>④ 推广与变更管理 <span class="mark mark-build"><span class="dot"></span>落地/推广</span></h3>
         <div class="meta"><span class="chip">4–6 周</span><span class="chip">组织与治理</span><span class="chip">培训/激励</span><span class="chip">Workshop</span></div>
         <ul class="bullet">
           <li>知识运营机制：角色、流程、考核、激励</li>
@@ -143,13 +179,17 @@
         </details>
         <div class="deliver">目标：多场景稳定运行，形成自驱动运营。</div>
         <div class="arrow" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24"><path d="M4 12h12" stroke="url(#g4)" stroke-width="2" stroke-linecap="round"/><path d="M14 8l4 4-4 4" fill="none" stroke="url(#g4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="g4" x1="0" x2="24" y1="0" y2="0"><stop stop-color="#7aa2ff"/><stop offset="1" stop-color="#5ce0b9"/></linearGradient></defs></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24">
+            <path d="M4 12h12" stroke="url(#g4)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M14 8l4 4-4 4" fill="none" stroke="url(#g4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs><linearGradient id="g4" x1="0" x2="24" y1="0" y2="0"><stop stop-color="#7aa2ff"/><stop offset="1" stop-color="#5ce0b9"/></linearGradient></defs>
+          </svg>
         </div>
       </div>
 
-      <!-- 5 评估与优化 -->
+      <!-- 5 评估与持续优化（评估/优化） -->
       <div class="stage">
-        <h3>⑤ 评估与持续优化</h3>
+        <h3>⑤ 评估与持续优化 <span class="mark mark-eval"><span class="dot"></span>评估/优化</span></h3>
         <div class="meta"><span class="chip">持续</span><span class="chip">KPI/OKR</span><span class="chip">模型迭代</span></div>
         <ul class="bullet">
           <li>价值评估：检索时长↓、重复工时↓、合规风险↓</li>
@@ -215,23 +255,19 @@
       </div>
     </section>
 
-    <div class="legend"><span><span class="dot dot-plan"></span>规划/设计</span><span><span class="dot dot-build"></span>落地/推广</span><span><span class="dot dot-eval"></span>评估/优化</span></div>
-    <div class="note">提示：勾选“简洁视图”以隐藏详细条目；本图可直接复制到PPT或作为网页组件嵌入方案中。</div>
+    <div class="legend">
+      <span><span class="dot dot-plan"></span>规划/设计</span>
+      <span><span class="dot dot-build"></span>落地/推广</span>
+      <span><span class="dot dot-eval"></span>评估/优化</span>
+    </div>
+    <div class="note">提示：勾选“简洁视图”以隐藏详细条目；点击“导出 PDF”可直接打印为 PDF；本图可复制到PPT或嵌入网页。</div>
   </div>
 
 <script>
-  // （可选）禁用右键 & 文本选择（更稳的写法）
-  document.addEventListener('contextmenu', e => e.preventDefault());
-  document.addEventListener('selectstart', e => e.preventDefault());
-
-  // 简洁视图开关 + 记忆
   document.addEventListener('DOMContentLoaded', () => {
     const cmp = document.getElementById('cmp');
     const saved = (typeof localStorage !== 'undefined') && localStorage.getItem('agri_compact') === '1';
-    if (saved) {
-      document.body.classList.add('compact');
-      if (cmp) cmp.checked = true;
-    }
+    if (saved) { document.body.classList.add('compact'); if (cmp) cmp.checked = true; }
     if (cmp) {
       cmp.addEventListener('change', (e) => {
         const on = e.target.checked;
@@ -239,6 +275,8 @@
         try { localStorage.setItem('agri_compact', on ? '1' : '0'); } catch(err) {}
       });
     }
+    const pdfBtn = document.getElementById('pdfBtn');
+    if (pdfBtn) pdfBtn.addEventListener('click', () => window.print());
   });
 </script>
 </body>
